@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Page</title>
+   <!--Made with love by Mutiullah Samim -->
+   
+	<!--Bootsrap 4 CDN-->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <!--Fontawesome CDN-->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+	<!--Custom styles-->
+	
+	
+	<script>
+$(document).ready(function(){ 
+	$("#myTab li:eq(0) a").tab('show'); // show 2nd tab on page load
+});
+
+function PB(action)
+{
+ document.getElementById("wish_buy").value = action;
+ //document.getElementById("detail_id").submit();
+}
+</script>
+
+<style>
+textarea {
+  min-width:500px;
+  max-width:100%;
+  min-height:100px;
+  height:100%;
+  width:100%;
+}
+
+.submit_btn{
+color: black;
+background-color: #FFC312;
+width: 100px;
+}
+
+.submit_btn:hover{
+color: black;
+background-color: white;
+}
+
+table {
+	 height: 300px;
+    overflow-y: auto;
+    width: 100%;
+	margin-left:auto;
+	margin-right:auto;
+}
+table thead th {
+	
+  background-color: #fff;
+  box-shadow: 0.125rem 0 0.1875rem #dee2e6;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+
+}
+
+body {
+    background: #74ebd5;
+    background: -webkit-linear-gradient(to right, #74ebd5, #ACB6E5);
+    background: linear-gradient(to right, #74ebd5, #ACB6E5);
+    min-height: 100vh;
+
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <% if (user.length > 0) { %>
+              <a > Hi, <%= user %></a>    
+    <% }else{ %>
+	<a > Haven't Login</a>    
+	<% } %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item ">
+        <a class="nav-link active" href="/books">Library <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/user_profile">User Profile</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="/login">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="/signup">Sign Up</a>
+      </li>
+	  <li class="nav-item">
+        <a class="nav-link disabled" href="/logout">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+				
+    <div class="container py-5">
+        
+            <div class="col-lg-11 mx-auto bg-white rounded shadow">
+	
+    <ul class="nav nav-tabs justify-content-center" id="myTab">
+        <li class="nav-item">
+            <a href="#details" class="nav-link" data-toggle="tab">Details</a>
+        </li>
+        
+        <li class="nav-item">
+            <a href="#review" class="nav-link" data-toggle="tab">Review</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane fade" id="details">
+		<div class="card-body">
+		
+		 <form id = "buy_wish" role="form" method="post" action="/books/details">
+		 <input id="wish_buy" name="wish_buy" type="hidden" /> 	
+		 <div class="row">
+		   <div class="col">
+           <table id="book_table"  >
+				
+				<tbody>
+				    <tr>
+						<th><font color="Blue">Title: </font></th><th><%= detail[0].title %></th>	
+					</tr>
+					<tr>
+						<th><font color="Blue">Author: </font></th><th><%= detail[0].author %>  
+						</th>	
+					</tr>
+					<tr>
+						<th><font color="Blue">Genre: </font></th><th><%= detail[0].genre %></th>	
+					</tr>
+					<tr>
+						<th><font color="Blue">Height: </font></th><th><%= detail[0].height %>
+						 </th>	
+					</tr>
+					<tr>
+						<th><font color="Blue">Publisher:</font></th><th> <%= detail[0].publisher %></th>	
+					</tr>
+					<tr>
+						<th><font color="Blue">Stock: </font></th><th><%= detail[0].stock %></th>	
+					</tr>
+					<tr>
+						<th><font color="Blue">Price:</font> </th><th><%= detail[0].price %> €</th>	
+					</tr>
+				</tbody>
+			</table>
+			</div>
+			<div class="col">
+			<br/>
+     <button id="buy"  onclick="PB('purchase') " class="btn btn-primary">Purchase</button> <br/><br/>
+	 <button id="wish"  onclick="PB('wish')" class="btn btn-primary ">Wish</button>
+            </div>
+			</div>
+			
+			
+			 
+			 </div>
+			 <b size = "5"> Review: </b>
+			  <textarea id = "review_text" name = "review_text" class="form-control"  ></textarea>
+			  <br/>
+			  <div class="text-center">
+			<input class="btn submit_btn" name="submitv" type="submit" value = "Submit"/>
+			</div>
+			</form>
+        </div>
+        
+        <div class="tab-pane fade" id="review">
+            <table id="review_table"  class="table table-bordered table-hover table-responsive">
+			
+	
+				<thead>
+					<tr>
+						<th >User</th>
+						<th width="100%">Review</th>
+
+					</tr>
+				</thead>
+				<tbody>
+				<% if (review.length > 0) { %>
+				<% for(var i=0; i < review.length; i++){ %>
+				<tr>
+				<td > <%= review[i].username %>   </td>
+				<td > <%= review[i].review %>    </td>
+				</tr>
+				<% } %> 
+				<% } %> 
+				
+				</tbody>
+			</table>
+            
+        </div>
+    </div>
+
+                
+              
+             </div>   
+            
+        </div>
+   
+</body>
+</html>

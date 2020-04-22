@@ -1,0 +1,42 @@
+/*
+*
+* ==========================================
+* CUSTOM UTIL CLASSES
+* ==========================================
+*
+*/
+
+
+table {
+	 height: 600px;
+    overflow-y: auto;
+    width: 100%;
+	margin-left:auto;
+	margin-right:auto;
+}
+table thead th {
+	
+  background-color: #fff;
+  box-shadow: 0.125rem 0 0.1875rem #dee2e6;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  width: 30%;
+}
+/*
+*
+* ==========================================
+* FOR DEMO PURPOSES
+* ==========================================
+*
+*/
+
+body {
+    background: #74ebd5;
+    background: -webkit-linear-gradient(to right, #74ebd5, #ACB6E5);
+    background: linear-gradient(to right, #74ebd5, #ACB6E5);
+    min-height: 100vh;
+
+}
+
+
